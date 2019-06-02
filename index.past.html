@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./src/css/main.css" />
+    <title>Welcome</title>
+  </head>
+  <body>
+    <div class="preloading-full-width-bg">
+      <div
+        class="circle-white to-center fixed-circle"
+        style="display: flex;justify-content: center;align-items: center"
+      >
+        <span class="hitBtnStyle" id="hit-btn">Hit Me</span>
+      </div>
+    </div>
+    <div id="main-content" class="mainContentWrapper">
+      <div id="icon-content" class="titleScale iconWrapper">
+        <!-- Circle 1 -->
+        <div
+          id="circle-parallax"
+          style="position: absolute;width: 100px;height: 100px;top: 0;right: 100px;"
+        >
+          <img
+            data-depth="0.4"
+            style="width: 100%"
+            src="./src/img/icons/Lingkaran.png"
+          />
+        </div>
+        <!-- line 1 -->
+        <div
+          id="line-parallax"
+          style="position: absolute;width: 100px;height: 100px;top: 0;right: 85px;"
+        >
+          <img
+            data-depth="0.2"
+            style="width: 100%"
+            src="./src/img/icons/Garis.png"
+          />
+        </div>
+        <!-- X 1 -->
+        <div
+          id="x-parallax"
+          style="position: absolute;width: 35px;height: 100px;top: 0;right: 100px;"
+        >
+          <img
+            data-depth="0.7"
+            style="width: 100%"
+            src="./src/img/icons/Cross.png"
+          />
+        </div>
+        <!-- Circle 2 -->
+        <div
+          id="color-line-parallax"
+          style="position: absolute;width: 85px;height: 100px;bottom: 0;left: 85px;"
+        >
+          <img
+            data-depth="0.6"
+            style="width: 100%"
+            src="./src/img/icons/Lingkaran-warna.png"
+          />
+        </div>
+        <!-- line 2 -->
+        <div
+          id="line2-parallax"
+          style="position: absolute;width: 85px;height: 100px;bottom: 0;left: 40px;"
+        >
+          <img
+            data-depth="0.2"
+            style="width: 100%"
+            src="./src/img/icons/Garis.png"
+          />
+        </div>
+        <!-- plus 1 -->
+        <div
+          id="plus1"
+          style="position: absolute;width: 25px;height: 100px;bottom: 0;left: 85px;"
+        >
+          <img
+            data-depth="0.8"
+            style="width: 100%"
+            src="./src/img/icons/Plus.png"
+          />
+        </div>
+      </div>
+
+      <h1 id="temporary-title">Under Construction</h1>
+    </div>
+
+    <script src="./src/js/parallax.min.js"></script>
+    <script src="./src/js/vanilla-tilt.min.js"></script>
+    <script type="text/javascript">
+      //Parallax
+      var parallax = [
+        document.getElementById("line-parallax"),
+        document.getElementById("circle-parallax"),
+        document.getElementById("color-line-parallax"),
+        document.getElementById("line2-parallax"),
+        document.getElementById("plus1"),
+        document.getElementById("x-parallax")
+      ]
+      var parallaxLength = parallax.length
+      let element
+      for (var i = 0; i < parallaxLength; i++) {
+        element = parallax[i]
+        new Parallax(element, {
+          relativeInput: true
+        })
+      }
+
+      //tilt
+      // VanillaTilt.init(document.querySelector("#line-tilt"), {
+      //   max: 25,
+      //   speed: 400,
+      //   scale: 1.5,
+
+      // })
+
+      let hitMe = document.querySelectorAll("#hit-btn")[0]
+      setTimeout(() => {
+        hitMe.style.display = "unset"
+      }, 2500)
+      hitMe.addEventListener("click", () => {
+        hitMe.style.display = "none"
+        scaleCircyle()
+      })
+
+      function scaleCircyle() {
+        let me = document.querySelectorAll(".circle-white")
+        for (let index = 0; index < me.length; index++) {
+          me[index].classList.remove("to-center")
+          me[index].classList.add("scale-circle")
+          setTimeout(() => {
+            document.querySelectorAll(".preloading-full-width-bg")[0].remove()
+            document
+              .querySelectorAll("#temporary-title")[0]
+              .classList.add("titleScale")
+            document.querySelectorAll("#main-content")[0].style.display = "flex"
+          }, 1000)
+        }
+      }
+    </script>
+  </body>
+</html>
