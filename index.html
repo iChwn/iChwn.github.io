@@ -210,50 +210,56 @@
         </div>
       </div>
     </div>
-    <link rel="stylesheet/less" type="text/css" href="styles.less" />
     <script src="./src/js/vanilla-tilt.min.js"></script>
     <script src="./src/js/parallax.min.js"></script>
     <script src="./src/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.1/smooth-scrollbar.js"></script>
+
     <script type="text/javascript">
       // INIT_PARALLAX.init();
       // TILT_COMPONENT.init();
+
       ADJUSTING_UI.init();
 
-      //Detect Scroll
-      let scrollPos = 0;
+      //Smoth scrolling
+
+      let options = { damping: 0.1 };
+      let scrollBoundary = 0;
+      const scrolling = Scrollbar.init(window.body, options);
+      scrolling.addListener(function(status) {
+        detectScroll(status);
+        parralaxScrolling(status);
+      });
+
       let scrollType = "";
-      window.addEventListener("scroll", function() {
-        if (document.body.getBoundingClientRect().top > scrollPos) {
+      function detectScroll(status) {
+        if (status.offset.y < scrollBoundary) {
           scrollType = "top";
         } else {
           scrollType = "down";
         }
-        scrollPos = document.body.getBoundingClientRect().top;
-      });
+        scrollBoundary = status.offset.y;
+      }
 
-      let scroll = window.pageYOffset;
-      setTimeout(() => {
-        document.addEventListener("scroll", function(e) {
-          let offset = window.pageYOffset;
-          scroll = offset;
-          let total = Math.round(0 + scroll / 4);
-          if (total > 100) {
-            document.getElementById("myP").style.display = "unset";
-          }
-          let selector = document.querySelectorAll("#header-wrapper")[0];
-          selector.style.top = `${total}px`;
+      function parralaxScrolling(status) {
+        let scroll = status.offset.y;
+        let total = Math.round(0 + scroll / 4);
+        if (total > 100) {
+          document.getElementById("myP").style.display = "unset";
+        }
+        let selector = document.querySelectorAll("#header-wrapper")[0];
+        selector.style.top = `${total}px`;
 
-          //scroll Animation Function
-          let mouseSelector = document.querySelectorAll("#mouse-animate")[0];
-          let halfC = document.querySelectorAll("#half-circle")[0];
-          let headerMain = document.querySelectorAll("#header")[0];
-          let textBox = document.querySelectorAll("#text-box")[0];
-          OnScrollAnimate(mouseSelector, offset, 60, "mouse");
-          OnScrollAnimate(halfC, offset, 30, "circle");
-          OnScrollAnimate(headerMain, offset, 700, "header");
-          OnScrollAnimate(textBox, offset, 1000, "text-box");
-        });
-      }, 1000);
+        //scroll Animation Function
+        let mouseSelector = document.querySelectorAll("#mouse-animate")[0];
+        let halfC = document.querySelectorAll("#half-circle")[0];
+        let headerMain = document.querySelectorAll("#header")[0];
+        let textBox = document.querySelectorAll("#text-box")[0];
+        OnScrollAnimate(mouseSelector, scroll, 60, "mouse");
+        OnScrollAnimate(halfC, scroll, 30, "circle");
+        OnScrollAnimate(headerMain, scroll, 700, "header");
+        OnScrollAnimate(textBox, scroll, 1000, "text-box");
+      }
 
       function OnScrollAnimate(selector, offset, range, type) {
         let header = selector;
@@ -279,7 +285,7 @@
               abtWrapper.style.opacity = calc / 10;
               abtWrapper.style.marginTop = 20 - calc + "px";
             }
-            if (calc > 20) {
+            if (calc > 16) {
               if (scrollType === "down") {
                 wCanDo.style.width = 250 + "px";
                 wCanDoR.style.width = 100 + "%";
