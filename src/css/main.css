@@ -196,6 +196,11 @@ body {
   padding: 30px 30px 0px 30px;
   position: relative;
 }
+@media only screen and (max-width: 600px) {
+  .mainContentWrapper {
+    padding: 0;
+  }
+}
 .iconWrapper {
   width: 50%;
   height: 300px;
@@ -306,28 +311,10 @@ body {
   backface-visibility: hidden;
   margin-bottom: 60px;
 }
+
 .heading-primary-main {
   display: block;
-  font-size: 60px;
-  font-weight: 400;
-  letter-spacing: 40px;
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-}
-.heading-primary-sub {
-  display: block;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 19.4px;
-  animation-name: moveInRight;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  color: #ffdc48;
-}
-.heading-primary-main {
-  display: block;
-  font-size: 60px;
+  font-size: 4vw;
   font-weight: 400;
   letter-spacing: 40px;
   animation: moveInLeft 1s ease-out backwards 0.5s;
@@ -335,12 +322,13 @@ body {
 }
 .heading-primary-sub {
   display: block;
-  font-size: 60px;
+  font-size: 4vw;
   font-weight: 400;
   letter-spacing: 40px;
   animation-fill-mode: backwards;
   animation: moveInRight 1s ease-out backwards 0.5s;
   font-family: "Lato";
+  color: #ffdc48;
 }
 @keyframes moveInLeft {
   0% {
@@ -657,7 +645,7 @@ body {
   background-position: top;
   width: 0px;
   height: 250px;
-  /* background-color: #ffdc48; */
+  background-color: #ffdc48;
   transition: all;
   transition-duration: 1s;
   display: flex;
