@@ -14,6 +14,12 @@
     />
     <link rel="stylesheet" href="./src/css/main.css" />
     <link rel="icon" href="./src/img/icons/ichwn-logo-01.png" />
+    <meta
+      name="Description"
+      content="Author: Ichwan Arif Pratama, 
+    Illustrator:Ichwan Arif Pratama, Category: Personal Website"
+    />
+    <meta name=" theme-color" content="#0d1127" />
     <title>iChwan's Profile</title>
   </head>
 
@@ -225,7 +231,12 @@
 
       //Smoth scrolling
 
-      let options = { damping: 0.1 };
+      let options = {
+        damping: 0.1,
+        effect: "bounce",
+        maxOverscroll: 150,
+        glowColor: "#87ceeb"
+      };
       let scrollBoundary = 0;
       const scrolling = Scrollbar.init(window.body, options);
       scrolling.addListener(function(status) {
