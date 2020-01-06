@@ -682,6 +682,9 @@ body {
 .w-can-do-wrapper-right::-webkit-scrollbar {
   display: none;
 }
+.active-grab {
+  cursor: grabbing;
+}
 .w-r-absolute {
   position: absolute;
   height: 100%;
@@ -708,6 +711,7 @@ body {
   align-items: center;
   padding: 10px;
   flex-direction: column;
+  user-select: none;
 }
 .wrapper-inside-card h3 {
   font-family: Lato;
