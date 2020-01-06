@@ -556,6 +556,7 @@ body {
   /* position: absolute; */
   top: 0%;
   left: 50%;
+  opacity: 0;
   /* transform: translate(-50%, 0%); */
   text-align: center;
   display: flex;
