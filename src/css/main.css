@@ -676,6 +676,8 @@ body {
   overflow-y: hidden;
   opacity: 0;
   position: relative;
+  transition: all;
+  transition-duration: 1s;
 }
 .w-can-do-wrapper-right::-webkit-scrollbar {
   display: none;
