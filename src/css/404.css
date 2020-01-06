@@ -1,0 +1,239 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "pixelFont";
+  src: url("../fonts/LLPIXEL3.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+.preloading-full-width-bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  overflow: hidden;
+}
+.circle-white {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 5em;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+}
+
+.fixed-circle {
+  top: 40%;
+}
+.scale-circle {
+  -webkit-animation: scaleMe 3s;
+  animation: scaleMe 3s;
+}
+.to-center {
+  -webkit-animation: moveToCenter 2s;
+  animation: moveToCenter 2s;
+}
+
+@-webkit-keyframes moveToCenter {
+  0% {
+    height: 500px;
+    top: 100%;
+  }
+  50% {
+    height: 100px;
+    top: 30%;
+  }
+  85% {
+    height: 300px;
+    top: 50%;
+  }
+  100% {
+    height: 100px;
+    top: 40%;
+  }
+}
+
+@keyframes moveToCenter {
+  0% {
+    height: 500px;
+    top: 100%;
+  }
+  50% {
+    height: 100px;
+    top: 30%;
+  }
+  85% {
+    height: 300px;
+    top: 50%;
+  }
+  100% {
+    height: 100px;
+    top: 40%;
+  }
+}
+
+@-webkit-keyframes scaleMe {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(100);
+    transform: scale(100);
+  }
+}
+
+@keyframes scaleMe {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(100);
+    transform: scale(100);
+  }
+}
+
+.fontBtnStyle {
+  font-family: pixelFont;
+  font-size: 20px;
+}
+
+.hitBtnStyle {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  display: none;
+  -webkit-animation: fadeIn 3s;
+  animation: fadeIn 3s;
+}
+.hitBtnStyle:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.titleScale {
+  -webkit-animation: fadeIn 3s;
+  animation: fadeIn 3s;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.mainContentWrapper {
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+.iconWrapper {
+  width: 50%;
+  height: 300px;
+  position: absolute;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.textInsideIcon {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.canvasWrapper {
+  width: 60%;
+  height: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  border: 2rem solid yellow;
+  overflow: hidden;
+}
+
+.canvasWrapperMobile {
+  width: 60%;
+  height: 80%;
+  display: none;
+  position: relative;
+  border: 2rem solid yellow;
+  overflow: hidden;
+}
+
+@media (max-width: 1000px) {
+  .canvasWrapper {
+    display: none;
+  }
+  .canvasWrapperMobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.frameWrapper {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}

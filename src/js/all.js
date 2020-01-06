@@ -28,52 +28,52 @@ const ADJUSTING_UI = {
   }
 };
 
-// const INIT_PARALLAX = {
-//   init: () => {
-//     //Parallax
-//     var parallax = [
-//       document.getElementById("bambo-leave-1"),
-//       document.getElementById("bambo-leave-2"),
-//       document.getElementById("bambo-leave-3"),
-//       document.getElementById("bambo-leave-4"),
-//       document.getElementById("bambo-leave-5"),
-//       document.getElementById("rain-drop"),
-//       document.getElementById("simpanse-parallax"),
-//       document.getElementById("grass-parallax"),
-//       document.getElementById("main-bambo"),
-//       document.getElementById("right-leave"),
-//       document.getElementById("jerapah"),
-//       document.getElementById("ichwan-parallax"),
-//       document.getElementById("grigi-hijau"),
-//       document.getElementById("kakak-tua")
-//     ]
-//     var parallaxLength = parallax.length
-//     let element
-//     for (var i = 0; i < parallaxLength; i++) {
-//       element = parallax[i]
-//       new Parallax(element, {
-//         relativeInput: true
-//       })
-//     }
-//   }
-// }
+const INIT_PARALLAX = {
+  init: () => {
+    //Parallax
+    var parallax = [
+      document.getElementById("bambo-leave-1"),
+      document.getElementById("bambo-leave-2"),
+      document.getElementById("bambo-leave-3"),
+      document.getElementById("bambo-leave-4"),
+      document.getElementById("bambo-leave-5"),
+      document.getElementById("rain-drop"),
+      document.getElementById("simpanse-parallax"),
+      document.getElementById("grass-parallax"),
+      document.getElementById("main-bambo"),
+      document.getElementById("right-leave"),
+      document.getElementById("jerapah"),
+      document.getElementById("ichwan-parallax"),
+      document.getElementById("grigi-hijau"),
+      document.getElementById("kakak-tua")
+    ];
+    var parallaxLength = parallax.length;
+    let element;
+    for (var i = 0; i < parallaxLength; i++) {
+      element = parallax[i];
+      new Parallax(element, {
+        relativeInput: true
+      });
+    }
+  }
+};
 
-// const TILT_COMPONENT = {
-//   init: () => {
-//     var tilt = [
-//       document.getElementById("lingkaran-atas"),
-//       document.getElementById("line-circle-atas"),
-//       document.getElementById("tilt-air"),
-//       document.getElementById("click-button")
-//     ]
-//     let tiltelement
-//     for (var x = 0; x < tilt.length; x++) {
-//       tiltelement = tilt[x]
-//       VanillaTilt.init(tiltelement, {
-//         max: tiltelement.id === "click-button" ? 0 : 20,
-//         speed: 2000,
-//         scale: tiltelement.id === "tilt-air" ? 1 : 1.1
-//       })
-//     }
-//   }
-// }
+const TILT_COMPONENT = {
+  init: () => {
+    var tilt = [
+      document.getElementById("lingkaran-atas"),
+      document.getElementById("line-circle-atas"),
+      document.getElementById("tilt-air")
+      // document.getElementById("click-button")
+    ];
+    let tiltelement;
+    for (var x = 0; x < tilt.length; x++) {
+      tiltelement = tilt[x];
+      VanillaTilt.init(tiltelement, {
+        max: tiltelement.id === "click-button" ? 0 : 20,
+        speed: 2000,
+        scale: tiltelement.id === "tilt-air" ? 1 : 1.1
+      });
+    }
+  }
+};
