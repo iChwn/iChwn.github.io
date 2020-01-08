@@ -24,7 +24,7 @@
   </head>
 
   <body id="body">
-    <div class="preloading-full-width-bg">
+    <!-- <div class="preloading-full-width-bg">
       <div
         id="click-button"
         class="circle-white to-center fixed-circle"
@@ -34,8 +34,8 @@
           <i class="fas fa-play"></i>
         </a>
       </div>
-    </div>
-    <div id="main-content" style="display: none">
+    </div> -->
+    <div id="main-content" style="display: unset">
       <!-- Header -->
       <div class="mainContentWrapper" style="height:100%">
         <div
@@ -102,7 +102,7 @@
       </div>
       <!-- Content 1 -->
       <div class="mainContentWrapper" style="padding-top: 0">
-        <div class="canvasWrapper">
+        <div class="canvasWrapper" id="content-1">
           <div class="firstc-wrapper">
             <div class="half-circle" id="half-circle">
               <span class="sub-content" id="myP">
@@ -112,8 +112,6 @@
             </div>
             <div class="parent-about-wrapper" id="about-wrapper">
               <div class="about-wrapper">
-                <div class="accent-about-right"></div>
-                <div class="accent-about-right left"></div>
                 <span>
                   Hello!, My name is
                   <b style="color:#ffdc48">Ichwan Pratama</b> i'm 19 years old,
@@ -195,12 +193,43 @@
                   </div>
                 </div>
               </div>
+              <div class="added-block"></div>
             </div>
           </div>
         </div>
       </div>
-
       <!-- Content 2 -->
+      <!-- <div class="mainContentWrapper" style="padding-top: 0;z-index: 1;">
+        <div class="canvasWrapper" id="content-2">
+          <div class="firstc-wrapper">
+            <div class="half-circle" id="half-circle-2">
+              <span
+                class="sub-content"
+                id="myP2"
+                style="font-size: 40px;line-height:55px"
+              >
+                <span>Education</span><br />
+                Experience
+              </span>
+            </div>
+            <div class="parent-about-wrapper" id="about-wrapper-2">
+              <div class="about-wrapper">
+                <div
+                  style="width: 100%;height:100%;background-color:red;display:flex;flex-wrap: wrap;justify-content: center"
+                >
+                  <div
+                    style="width: 350px;height:500px;background-color:blue"
+                  ></div>
+                  <div
+                    style="width: 350px;height:500px;background-color:green"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- Footer -->
       <div class="mainContentWrapper" style="padding-top: 0">
         <div class="canvasWrapper" style="height: 300px">
           <div class="footer-wrapper">
@@ -217,118 +246,184 @@
         </div>
       </div>
     </div>
-    <script src="./src/js/vanilla-tilt.min.js"></script>
-    <script src="./src/js/parallax.min.js"></script>
     <script src="./src/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.1/smooth-scrollbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TimelineMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.min.js"></script>
 
     <script type="text/javascript">
       // INIT_PARALLAX.init();
       // TILT_COMPONENT.init();
-
-      ADJUSTING_UI.init();
+      // ADJUSTING_UI.init();
       ADJUSTING_UI.customScrollXGrab();
 
       //Smoth scrolling
+      // let options = {
+      //   damping: 0.1,
+      //   effect: "bounce",
+      //   maxOverscroll: 150,
+      //   glowColor: "#87ceeb"
+      // };
+      // let scrollBoundary = 0;
+      // const scrolling = Scrollbar.init(window.body, options);
+      // scrolling.addListener(function(status) {
+      // detectScroll(status);
+      // parralaxScrolling(status);
+      // });
+    </script>
+    <script>
+      let isChrome =
+        /Chrome/.test(navigator.userAgent) &&
+        /Google Inc/.test(navigator.vendor);
 
+      console.log("is Chrome ? ", isChrome);
+      let scenes = [];
+      let y = 0;
+
+      // initial smooth-scrollbar
       let options = {
-        damping: 0.1,
+        damping: 0.3,
         effect: "bounce",
         maxOverscroll: 150,
         glowColor: "#87ceeb"
       };
-      let scrollBoundary = 0;
-      const scrolling = Scrollbar.init(window.body, options);
-      scrolling.addListener(function(status) {
-        detectScroll(status);
-        parralaxScrolling(status);
+      let scroll = Scrollbar.init(window.body, options);
+
+      // initiate ScrollMagic Controller
+      let controller = new ScrollMagic.Controller({
+        refreshInterval: 0
       });
 
-      let scrollType = "";
-      function detectScroll(status) {
-        if (status.offset.y < scrollBoundary) {
-          scrollType = "top";
-        } else {
-          scrollType = "down";
-        }
-        scrollBoundary = status.offset.y;
+      // update scrollY controller
+      if (isChrome) {
+        controller.scrollPos(function() {
+          return y;
+        });
       }
 
-      function parralaxScrolling(status) {
-        let scroll = status.offset.y;
-        let total = Math.round(0 + scroll / 4);
-        if (total > 100) {
-          document.getElementById("myP").style.display = "unset";
-        }
-        let selector = document.querySelectorAll("#header-wrapper")[0];
-        selector.style.top = `${total}px`;
+      let headerW = document.querySelectorAll("#header-wrapper")[0];
+      let textBoxH = document.querySelectorAll("#text-box")[0];
+      let mouseAnimate = document.querySelectorAll("#mouse-animate")[0];
+      let halfCircle1 = document.querySelectorAll("#half-circle")[0];
+      let aboutWrapper = document.querySelectorAll("#about-wrapper")[0];
+      let wCanWrapper = document.querySelectorAll(".w-can-do-wrapper")[0];
+      // let halfCircle2 = document.querySelectorAll("#half-circle-2")[0];
 
-        //scroll Animation Function
-        let mouseSelector = document.querySelectorAll("#mouse-animate")[0];
-        let halfC = document.querySelectorAll("#half-circle")[0];
-        let headerMain = document.querySelectorAll("#header")[0];
-        let textBox = document.querySelectorAll("#text-box")[0];
-        OnScrollAnimate(mouseSelector, scroll, 60, "mouse");
-        OnScrollAnimate(halfC, scroll, 30, "circle");
-        OnScrollAnimate(headerMain, scroll, 700, "header");
-        OnScrollAnimate(textBox, scroll, 1000, "text-box");
+      thisMagicHappend(
+        halfCircle1,
+        headerW,
+        1,
+        { top: "0px" },
+        { top: "200px" },
+        50
+      );
+      thisMagicHappend(
+        halfCircle1,
+        textBoxH,
+        1,
+        { top: "43%" },
+        { top: "50%" },
+        50
+      );
+      thisMagicHappend(
+        halfCircle1,
+        mouseAnimate,
+        0.3,
+        { opacity: 1 },
+        { opacity: 0, top: "480px" },
+        1
+      );
+      thisMagicHappend(
+        halfCircle1,
+        halfCircle1,
+        1,
+        { height: "0px", width: "0px", opacity: 0 },
+        { height: "250px", width: "400px", opacity: 1 },
+        100
+      );
+      thisMagicHappend(
+        halfCircle1,
+        aboutWrapper,
+        1,
+        { opacity: 0 },
+        { opacity: 1 },
+        150
+      );
+      thisMagicHappend(wCanWrapper, wCanWrapper, 1, {}, {}, 500, true);
+      // thisMagicHappend(
+      //   halfCircle2,
+      //   halfCircle2,
+      //   1,
+      //   { height: "0px", width: "0px", opacity: 0 },
+      //   { height: "250px", width: "400px", opacity: 1 },
+      //   100
+      // );
+
+      function thisMagicHappend(
+        triggerEl,
+        selector,
+        duration,
+        from,
+        to,
+        scrollTiming,
+        customClass = false
+      ) {
+        let tl = new TimelineMax();
+        tl.fromTo(selector, duration, from, to, "start");
+        scenes.push(
+          new ScrollMagic.Scene({
+            offset: scrollTiming,
+            triggerHook: "onEnter",
+            triggerElement: triggerEl,
+            duration: window.innerHeight,
+            reverse: true
+          })
+            .setTween(tl)
+            .on("leave", function() {
+              //   console.log("leave scene");
+            })
+            .on("enter", function() {
+              // console.log("enter scene");
+              if (customClass) {
+                customChangeAnimation(selector);
+              }
+            })
+            .on("progress", function(e) {
+              //   console.log("progress => ", e.progress);
+            })
+            .addTo(controller)
+        );
       }
 
-      function OnScrollAnimate(selector, offset, range, type) {
-        let header = selector;
-        let scrollTop = offset;
-        let height = window.outerHeight;
-        let offset2 = height / 2;
-        let calc;
-
-        switch (type) {
-          case "circle":
-            calc = 1 + (scrollTop - offset2 + range) / range;
-            let abtWrapper = document.querySelectorAll("#about-wrapper")[0];
-            let wCanDo = document.querySelectorAll(".w-can-do-wrapper")[0];
-            let wCanDoR = document.querySelectorAll(
+      function customChangeAnimation(selector) {
+        switch (selector.className) {
+          case "w-can-do-wrapper":
+            let partner = document.querySelectorAll(
               ".w-can-do-wrapper-right"
             )[0];
-            if (calc <= 10) {
-              selector.style.width = 40 * calc + "px";
-              selector.style.height = 25 * calc + "px";
-              selector.style.borderBottomLeftRadius = (60 * calc) / 3 + "px";
-              selector.style.borderBottomRightRadius = (60 * calc) / 3 + "px";
-              selector.style.opacity = calc / 5;
-              abtWrapper.style.opacity = calc / 10;
-              abtWrapper.style.marginTop = 20 - calc + "px";
-            }
-            if (calc > 16) {
-              if (scrollType === "down") {
-                wCanDo.style.width = 250 + "px";
-                wCanDoR.style.width = 100 + "%";
-                wCanDoR.style.opacity = 1;
-                // abtWrapper.children[0].children[0].style.display = "unset";
-              }
-            }
+            selector.style.width = 250 + "px";
+            partner.style.width = "100%";
+            console.log(selector);
             break;
-          case "header":
-            let screen = window.screen.height;
-            calc = 1 - (scrollTop - offset2) / range;
-            selector.style.opacity = calc;
-            break;
-          case "mouse":
-            calc = 1 - (scrollTop - offset2 + range) / range;
-            selector.style.opacity = calc;
-            if (calc > "1") {
-              selector.style.opacity = 1;
-            } else if (calc < "0") {
-              selector.style.opacity = 0;
-            }
-            break;
-          case "text-box":
-            calc = 1 - (scrollTop + offset2 + range) / 100;
-            selector.style.top = 30 - calc + "%";
-            break;
+
           default:
             break;
         }
       }
+
+      // listener smooth-scrollbar, update controller
+      scroll.addListener(function(status) {
+        y = status.offset.y;
+        if (isChrome) {
+          controller.update();
+        } else {
+          scenes.forEach(function(scene) {
+            scene.refresh();
+          });
+        }
+      });
     </script>
   </body>
 </html>
