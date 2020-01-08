@@ -24,7 +24,7 @@
   </head>
 
   <body id="body">
-    <!-- <div class="preloading-full-width-bg">
+    <div class="preloading-full-width-bg">
       <div
         id="click-button"
         class="circle-white to-center fixed-circle"
@@ -34,8 +34,8 @@
           <i class="fas fa-play"></i>
         </a>
       </div>
-    </div> -->
-    <div id="main-content" style="display: unset">
+    </div>
+    <div id="main-content" style="display: none">
       <!-- Header -->
       <div class="mainContentWrapper" style="height:100%">
         <div
@@ -199,7 +199,7 @@
         </div>
       </div>
       <!-- Content 2 -->
-      <!-- <div class="mainContentWrapper" style="padding-top: 0;z-index: 1;">
+      <div class="mainContentWrapper" style="padding-top: 0;z-index: 1;">
         <div class="canvasWrapper" id="content-2">
           <div class="firstc-wrapper">
             <div class="half-circle" id="half-circle-2">
@@ -228,7 +228,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
       <!-- Footer -->
       <div class="mainContentWrapper" style="padding-top: 0">
         <div class="canvasWrapper" style="height: 300px">
@@ -256,7 +256,7 @@
     <script type="text/javascript">
       // INIT_PARALLAX.init();
       // TILT_COMPONENT.init();
-      // ADJUSTING_UI.init();
+      ADJUSTING_UI.init();
       ADJUSTING_UI.customScrollXGrab();
 
       //Smoth scrolling
@@ -282,84 +282,97 @@
       let scenes = [];
       let y = 0;
 
-      // initial smooth-scrollbar
-      let options = {
-        damping: 0.3,
-        effect: "bounce",
-        maxOverscroll: 150,
-        glowColor: "#87ceeb"
-      };
-      let scroll = Scrollbar.init(window.body, options);
-
       // initiate ScrollMagic Controller
       let controller = new ScrollMagic.Controller({
         refreshInterval: 0
       });
 
-      // update scrollY controller
-      if (isChrome) {
-        controller.scrollPos(function() {
-          return y;
+      // initial smooth-scrollbar
+      function initScrolling() {
+        let options = {
+          damping: 0.3,
+          effect: "bounce",
+          maxOverscroll: 150,
+          glowColor: "#87ceeb"
+        };
+        let scroll = Scrollbar.init(window.body, options);
+        // listener smooth-scrollbar, update controller
+        scroll.addListener(function(status) {
+          y = status.offset.y;
+          if (isChrome) {
+            controller.update();
+          } else {
+            scenes.forEach(function(scene) {
+              scene.refresh();
+            });
+          }
         });
+
+        // update scrollY controller
+        if (isChrome) {
+          controller.scrollPos(function() {
+            return y;
+          });
+        }
+
+        let headerW = document.querySelectorAll("#header-wrapper")[0];
+        let textBoxH = document.querySelectorAll("#text-box")[0];
+        let mouseAnimate = document.querySelectorAll("#mouse-animate")[0];
+        let halfCircle1 = document.querySelectorAll("#half-circle")[0];
+        let aboutWrapper = document.querySelectorAll("#about-wrapper")[0];
+        let wCanWrapper = document.querySelectorAll(".w-can-do-wrapper")[0];
+        let halfCircle2 = document.querySelectorAll("#half-circle-2")[0];
+
+        thisMagicHappend(
+          halfCircle1,
+          headerW,
+          1,
+          { top: "0px" },
+          { top: "200px" },
+          50
+        );
+        thisMagicHappend(
+          halfCircle1,
+          textBoxH,
+          1,
+          { top: "43%" },
+          { top: "50%" },
+          50
+        );
+        thisMagicHappend(
+          halfCircle1,
+          mouseAnimate,
+          0.3,
+          { opacity: 1 },
+          { opacity: 0, top: "480px" },
+          1
+        );
+        thisMagicHappend(
+          halfCircle1,
+          halfCircle1,
+          1,
+          { height: "0px", width: "0px", opacity: 0 },
+          { height: "250px", width: "400px", opacity: 1 },
+          100
+        );
+        thisMagicHappend(
+          halfCircle1,
+          aboutWrapper,
+          1,
+          { opacity: 0 },
+          { opacity: 1 },
+          150
+        );
+        thisMagicHappend(wCanWrapper, wCanWrapper, 1, {}, {}, 500, true);
+        thisMagicHappend(
+          halfCircle2,
+          halfCircle2,
+          1,
+          { height: "0px", width: "0px", opacity: 0 },
+          { height: "250px", width: "400px", opacity: 1 },
+          100
+        );
       }
-
-      let headerW = document.querySelectorAll("#header-wrapper")[0];
-      let textBoxH = document.querySelectorAll("#text-box")[0];
-      let mouseAnimate = document.querySelectorAll("#mouse-animate")[0];
-      let halfCircle1 = document.querySelectorAll("#half-circle")[0];
-      let aboutWrapper = document.querySelectorAll("#about-wrapper")[0];
-      let wCanWrapper = document.querySelectorAll(".w-can-do-wrapper")[0];
-      // let halfCircle2 = document.querySelectorAll("#half-circle-2")[0];
-
-      thisMagicHappend(
-        halfCircle1,
-        headerW,
-        1,
-        { top: "0px" },
-        { top: "200px" },
-        50
-      );
-      thisMagicHappend(
-        halfCircle1,
-        textBoxH,
-        1,
-        { top: "43%" },
-        { top: "50%" },
-        50
-      );
-      thisMagicHappend(
-        halfCircle1,
-        mouseAnimate,
-        0.3,
-        { opacity: 1 },
-        { opacity: 0, top: "480px" },
-        1
-      );
-      thisMagicHappend(
-        halfCircle1,
-        halfCircle1,
-        1,
-        { height: "0px", width: "0px", opacity: 0 },
-        { height: "250px", width: "400px", opacity: 1 },
-        100
-      );
-      thisMagicHappend(
-        halfCircle1,
-        aboutWrapper,
-        1,
-        { opacity: 0 },
-        { opacity: 1 },
-        150
-      );
-      thisMagicHappend(wCanWrapper, wCanWrapper, 1, {}, {}, 500, true);
-      // thisMagicHappend(
-      //   halfCircle2,
-      //   halfCircle2,
-      //   1,
-      //   { height: "0px", width: "0px", opacity: 0 },
-      //   { height: "250px", width: "400px", opacity: 1 },
-      //   100
-      // );
 
       function thisMagicHappend(
         triggerEl,
@@ -405,25 +418,11 @@
             )[0];
             selector.style.width = 250 + "px";
             partner.style.width = "100%";
-            console.log(selector);
             break;
-
           default:
             break;
         }
       }
-
-      // listener smooth-scrollbar, update controller
-      scroll.addListener(function(status) {
-        y = status.offset.y;
-        if (isChrome) {
-          controller.update();
-        } else {
-          scenes.forEach(function(scene) {
-            scene.refresh();
-          });
-        }
-      });
     </script>
   </body>
 </html>

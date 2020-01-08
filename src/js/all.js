@@ -23,6 +23,7 @@ const ADJUSTING_UI = {
         //   .classList.add("titleScale");
         document.querySelectorAll(".preloading-full-width-bg")[0].remove();
         document.querySelectorAll("#main-content")[0].style.display = "unset";
+        initScrolling();
       }, 1000);
     }
   },
