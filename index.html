@@ -278,7 +278,7 @@
         /Chrome/.test(navigator.userAgent) &&
         /Google Inc/.test(navigator.vendor);
 
-      console.log("is Chrome ? ", isChrome);
+      // console.log("is Chrome ? ", isChrome);
       let scenes = [];
       let y = 0;
 
@@ -322,6 +322,7 @@
         let aboutWrapper = document.querySelectorAll("#about-wrapper")[0];
         let wCanWrapper = document.querySelectorAll(".w-can-do-wrapper")[0];
         let halfCircle2 = document.querySelectorAll("#half-circle-2")[0];
+        let content1 = document.querySelectorAll("#content-1")[0];
 
         thisMagicHappend(
           halfCircle1,
@@ -365,12 +366,20 @@
         );
         thisMagicHappend(wCanWrapper, wCanWrapper, 1, {}, {}, 500, true);
         thisMagicHappend(
-          halfCircle2,
+          content1,
           halfCircle2,
           1,
           { height: "0px", width: "0px", opacity: 0 },
           { height: "250px", width: "400px", opacity: 1 },
-          100
+          800
+        );
+        thisMagicHappend(
+          halfCircle2,
+          content1,
+          1,
+          { top: "0px" },
+          { top: "300px" },
+          400
         );
       }
 

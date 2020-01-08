@@ -16,15 +16,17 @@ const ADJUSTING_UI = {
     for (let index = 0; index < me.length; index++) {
       me[index].classList.remove("to-center");
       me[index].classList.add("scale-circle");
-      setTimeout(() => {
-        // document.querySelectorAll(".preloading-full-width-bg")[0].remove();
-        // document
-        //   .querySelectorAll("#main-content")[0]
-        //   .classList.add("titleScale");
-        document.querySelectorAll(".preloading-full-width-bg")[0].remove();
-        document.querySelectorAll("#main-content")[0].style.display = "unset";
+      let promiseStyle = new Promise((resolve, reject) => {
+        setTimeout(function() {
+          document.querySelectorAll(".preloading-full-width-bg")[0].remove();
+          document.querySelectorAll("#main-content")[0].style.display = "unset";
+          resolve("sukses gan");
+        }, 1000);
+      });
+      promiseStyle.then(successMessage => {
+        // console.log(successMessage);
         initScrolling();
-      }, 1000);
+      });
     }
   },
   customScrollXGrab() {
