@@ -19,11 +19,11 @@ const ADJUSTING_UI = {
       let promiseStyle = new Promise((resolve, reject) => {
         setTimeout(function() {
           document.querySelectorAll(".preloading-full-width-bg")[0].remove();
-          document.querySelectorAll("#main-content")[0].style.display = "unset";
           resolve("sukses gan");
         }, 1000);
       });
       promiseStyle.then(successMessage => {
+        document.querySelectorAll("#main-content")[0].style.display = "unset";
         // console.log(successMessage);
         initScrolling();
       });

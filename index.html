@@ -105,7 +105,7 @@
         <div class="canvasWrapper" id="content-1">
           <div class="firstc-wrapper">
             <div class="half-circle" id="half-circle">
-              <span class="sub-content" id="myP">
+              <span class="sub-content">
                 <span>About</span><br />
                 me
               </span>
@@ -194,6 +194,7 @@
                 </div>
               </div>
               <div class="added-block"></div>
+              <div class="added-block"></div>
             </div>
           </div>
         </div>
@@ -205,7 +206,6 @@
             <div class="half-circle" id="half-circle-2">
               <span
                 class="sub-content"
-                id="myP2"
                 style="font-size: 40px;line-height:55px"
               >
                 <span>Education</span><br />
@@ -213,16 +213,48 @@
               </span>
             </div>
             <div class="parent-about-wrapper" id="about-wrapper-2">
+              <div style="height: 30px"></div>
               <div class="about-wrapper">
-                <div
-                  style="width: 100%;height:100%;background-color:red;display:flex;flex-wrap: wrap;justify-content: center"
-                >
-                  <div
-                    style="width: 350px;height:500px;background-color:blue"
-                  ></div>
-                  <div
-                    style="width: 350px;height:500px;background-color:green"
-                  ></div>
+                <div class="exp-wrapper">
+                  <div class="d-flex flex-col" style="width: 345px">
+                    <h1 class="edu-v-title">Experience</h1>
+                    <div class="d-flex w-100 exp-card flex-col">
+                      <h3>Fullstack Developer</h3>
+                      <p>May 2017 - Sep 2017</p>
+                      <p>
+                        I have ever intership with a company called
+                        <b>PT.HONDA PASTEUR</b> as Fullstack Developer
+                      </p>
+                    </div>
+                    <div class="d-flex w-100 exp-card flex-col">
+                      <h3>Frontend Developer</h3>
+                      <p>Aug 2018 - Now</p>
+                      <p>
+                        Currently i work at company called <b>Aegislabs</b>
+                        as a Frontend Developer, i got lot of experiences about
+                        Programming in here:)
+                      </p>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-col" style="width: 345px">
+                    <h1 class="exp-v-title">Education</h1>
+                    <div class="d-flex w-100 exp-card flex-col">
+                      <h3>SMK Assalaam</h3>
+                      <p>May 2016 - May 2018</p>
+                      <p>
+                        I've been Graduate from <b>Assalaam Highschool</b> and
+                        then i decide to take college after that
+                      </p>
+                    </div>
+                    <div class="d-flex w-100 exp-card flex-col">
+                      <h3>STT Bandung</h3>
+                      <p>Sep 2019 - Now</p>
+                      <p>
+                        I'm a CS (Computer Science) student at this University,
+                        <b>I hope i can Graduate ASAP</b> from here:)
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -254,26 +286,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.min.js"></script>
 
     <script type="text/javascript">
-      // INIT_PARALLAX.init();
-      // TILT_COMPONENT.init();
       ADJUSTING_UI.init();
       ADJUSTING_UI.customScrollXGrab();
 
-      //Smoth scrolling
-      // let options = {
-      //   damping: 0.1,
-      //   effect: "bounce",
-      //   maxOverscroll: 150,
-      //   glowColor: "#87ceeb"
-      // };
-      // let scrollBoundary = 0;
-      // const scrolling = Scrollbar.init(window.body, options);
-      // scrolling.addListener(function(status) {
-      // detectScroll(status);
-      // parralaxScrolling(status);
-      // });
-    </script>
-    <script>
       let isChrome =
         /Chrome/.test(navigator.userAgent) &&
         /Google Inc/.test(navigator.vendor);
@@ -323,6 +338,9 @@
         let wCanWrapper = document.querySelectorAll(".w-can-do-wrapper")[0];
         let halfCircle2 = document.querySelectorAll("#half-circle-2")[0];
         let content1 = document.querySelectorAll("#content-1")[0];
+        let expV = document.querySelectorAll(".exp-v-title")[0];
+        let eduV = document.querySelectorAll(".edu-v-title")[0];
+        let expCard = document.querySelectorAll(".exp-card");
 
         thisMagicHappend(
           halfCircle1,
@@ -371,7 +389,7 @@
           1,
           { height: "0px", width: "0px", opacity: 0 },
           { height: "250px", width: "400px", opacity: 1 },
-          800
+          600
         );
         thisMagicHappend(
           halfCircle2,
@@ -381,8 +399,32 @@
           { top: "300px" },
           400
         );
+        thisMagicHappend(
+          halfCircle2,
+          expV,
+          1,
+          { bottom: "0px", opacity: 0 },
+          { bottom: "150px", opacity: 1 },
+          300
+        );
+        thisMagicHappend(
+          halfCircle2,
+          eduV,
+          1,
+          { bottom: "0px", opacity: 0 },
+          { bottom: "120px", opacity: 1 },
+          300
+        );
+        thisMagicHappend(
+          eduV,
+          expCard,
+          1,
+          { bottom: "0px", opacity: 0 },
+          { bottom: "120px", opacity: 1 },
+          100
+        );
       }
-
+      // initScrolling();
       function thisMagicHappend(
         triggerEl,
         selector,
