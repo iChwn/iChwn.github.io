@@ -777,24 +777,51 @@ body {
 .exp-card p b {
   color: #ffdc48;
 }
+
 .edu-v-title {
   position: absolute;
-  left: -125px;
+  right: -70px;
   font-size: 60px;
   text-orientation: inherit;
   writing-mode: vertical-lr;
   color: #fff;
   font-family: Lato;
-  transform: scale(-1);
+  margin: 0;
 }
 .exp-v-title {
   position: absolute;
-  right: -125px;
+  left: -70px;
   font-size: 60px;
   text-orientation: inherit;
   writing-mode: vertical-lr;
   color: #fff;
   font-family: Lato;
+  margin: 0;
+}
+@media only screen and (max-width: 500px) {
+  .edu-v-title {
+    position: relative;
+    right: 0px;
+    font-size: 50px;
+    text-orientation: inherit;
+    writing-mode: unset;
+    color: #fff;
+    font-family: Lato;
+    margin: 0;
+    top: 0;
+    margin-top: 30px;
+  }
+  .exp-v-title {
+    position: relative;
+    top: 0px;
+    left: 0;
+    font-size: 50px;
+    text-orientation: inherit;
+    writing-mode: unset;
+    color: #fff;
+    font-family: Lato;
+    margin: 0;
+  }
 }
 
 .m-0 {
@@ -817,6 +844,9 @@ body {
 }
 .p-relative {
   position: relative;
+}
+.items-center {
+  align-items: center;
 }
 
 /* Scrollmagic */
