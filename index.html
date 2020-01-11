@@ -267,6 +267,7 @@
             </div>
             <div class="added-block"></div>
             <div class="added-block"></div>
+            <div class="added-block"></div>
           </div>
         </div>
       </div>
@@ -286,7 +287,7 @@
             <div class="parent-about-wrapper" id="about-wrapper-3">
               <div style="height: 30px"></div>
               <div class="about-wrapper">
-                <div class="exp-wrapper p-1rm">
+                <div class="exp-wrapper p-1rm" id="skillswrapper">
                   <div class="d-flex flex-col p-relative items-center w-100">
                     <div
                       class="d-flex w-100 exp-card flex-row wrap h-full justify-center border-none"
@@ -389,12 +390,11 @@
                 </div>
               </div>
               <div class="added-block"></div>
-              <!-- <div class="added-block"></div> -->
             </div>
           </div>
         </div>
         <div class="hire-me-banner">
-          <h1 class="heading-primary m-0">
+          <h1 class="hiretext heading-primary m-0">
             <span class="m-0">Have any Project in mind?</span>
             <!-- <span class="heading-primary-sub m-0">Pratama</span> -->
           </h1>
@@ -456,7 +456,7 @@
       // initial smooth-scrollbar
       function initScrolling() {
         let options = {
-          damping: 0.3,
+          damping: 1,
           effect: "bounce",
           maxOverscroll: 150,
           glowColor: "#87ceeb"
@@ -492,6 +492,11 @@
         let expV = document.querySelectorAll(".exp-v-title")[0];
         let eduV = document.querySelectorAll(".edu-v-title")[0];
         let expCard = document.querySelectorAll(".exp-card");
+        let content2 = document.querySelectorAll("#content-2")[0];
+        let content3 = document.querySelectorAll("#content-3")[0];
+        let halfCircle3 = document.querySelectorAll("#half-circle-3")[0];
+        let skillWrapper = document.querySelectorAll("#skillswrapper")[0];
+        let hireText = document.querySelectorAll(".hiretext")[0];
 
         thisMagicHappend(
           halfCircle1,
@@ -574,6 +579,31 @@
           { bottom: "120px", opacity: 1 },
           300
         );
+        thisMagicHappend(
+          content2,
+          content3,
+          1,
+          { marginTop: "0px" },
+          { marginTop: "-300px" },
+          800
+        );
+        thisMagicHappend(
+          content3,
+          halfCircle3,
+          1,
+          { height: "0px", width: "0px", opacity: 0 },
+          { height: "250px", width: "400px", opacity: 1 },
+          300
+        );
+        thisMagicHappend(
+          halfCircle3,
+          skillWrapper,
+          1,
+          { opacity: 0 },
+          { opacity: 1 },
+          300
+        );
+        thisMagicHappend(content3, hireText, 1, {}, {}, 1200, true);
       }
       // initScrolling();
       function thisMagicHappend(
@@ -613,13 +643,20 @@
       }
 
       function customChangeAnimation(selector) {
-        switch (selector.className) {
+        let tempSelect = selector.className.split(" ")[0];
+        switch (tempSelect) {
           case "w-can-do-wrapper":
             let partner = document.querySelectorAll(
               ".w-can-do-wrapper-right"
             )[0];
             selector.style.width = 250 + "px";
             partner.style.width = "100%";
+            break;
+          case "hiretext":
+            let partner2 = document.querySelectorAll("#hirebtn")[0];
+            selector.style.display = "unset";
+            hirebtn.style.display = "unset";
+            // console.log("INNNNN");
             break;
           default:
             break;
