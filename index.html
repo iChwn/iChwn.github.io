@@ -266,8 +266,6 @@
               </div>
             </div>
             <div class="added-block"></div>
-            <div class="added-block"></div>
-            <div class="added-block"></div>
           </div>
         </div>
       </div>
@@ -408,10 +406,8 @@
         </div>
       </div>
       <!-- Footer -->
-      <div
-        class="mainContentWrapper"
-        style="padding-top: 0;padding-bottom:30px;"
-      >
+      <!-- padding-bottom:30px; -->
+      <div class="mainContentWrapper" style="padding-top: 0;">
         <div class="canvasWrapper" style="height: 300px">
           <div class="wave-bottom">
             <div class="footer-wrapper">
@@ -456,7 +452,7 @@
       // initial smooth-scrollbar
       function initScrolling() {
         let options = {
-          damping: 1,
+          damping: 0.5,
           effect: "bounce",
           maxOverscroll: 150,
           glowColor: "#87ceeb"
@@ -580,12 +576,12 @@
           300
         );
         thisMagicHappend(
-          content2,
           content3,
+          content2,
           1,
-          { marginTop: "0px" },
-          { marginTop: "-300px" },
-          800
+          { top: "0px" },
+          { top: "300px" },
+          600
         );
         thisMagicHappend(
           content3,
