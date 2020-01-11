@@ -388,12 +388,30 @@
                   </div> -->
                 </div>
               </div>
+              <div class="added-block"></div>
+              <!-- <div class="added-block"></div> -->
             </div>
           </div>
         </div>
+        <div class="hire-me-banner">
+          <h1 class="heading-primary m-0">
+            <span class="m-0">Have any Project in mind?</span>
+            <!-- <span class="heading-primary-sub m-0">Pratama</span> -->
+          </h1>
+          <a
+            id="hirebtn"
+            href="javascript:void(0)"
+            class="btn-icon btn btn-white btn-animated-in-1 btn-hire"
+          >
+            Hire Me
+          </a>
+        </div>
       </div>
       <!-- Footer -->
-      <div class="mainContentWrapper" style="padding-top: 0">
+      <div
+        class="mainContentWrapper"
+        style="padding-top: 0;padding-bottom:30px;"
+      >
         <div class="canvasWrapper" style="height: 300px">
           <div class="wave-bottom">
             <div class="footer-wrapper">
@@ -404,7 +422,7 @@
                   style="width: 100%"
                 />
               </div>
-              <h5>Ⓒ Ichwan 2020 Design By Ichwan</h5>
+              <h5>Ⓒ Ichwan 2020, Design By Ichwan</h5>
               <h5>All rights reserved</h5>
             </div>
           </div>
@@ -607,6 +625,11 @@
             break;
         }
       }
+
+      let hireBtn = document.querySelectorAll("#hirebtn")[0];
+      hireBtn.addEventListener("click", function() {
+        window.open("mailto:ichwanarif26@gmail.com");
+      });
     </script>
   </body>
 </html>
