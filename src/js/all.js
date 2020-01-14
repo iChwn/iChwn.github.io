@@ -25,7 +25,9 @@ const ADJUSTING_UI = {
       promiseStyle.then(successMessage => {
         document.querySelectorAll("#main-content")[0].style.display = "unset";
         // console.log(successMessage);
-        COMPLEX_UI.init();
+        setTimeout(() => {
+          COMPLEX_UI.init();
+        }, 500);
       });
     }
   },
