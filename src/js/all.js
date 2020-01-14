@@ -25,9 +25,7 @@ const ADJUSTING_UI = {
       promiseStyle.then(successMessage => {
         document.querySelectorAll("#main-content")[0].style.display = "unset";
         // console.log(successMessage);
-        setTimeout(() => {
-          COMPLEX_UI.init();
-        }, 500);
+        COMPLEX_UI.init();
       });
     }
   },
@@ -126,7 +124,6 @@ const COMPLEX_UI = {
       refreshInterval: 0
     });
 
-    initScrolling();
     // initial smooth-scrollbar
     function initScrolling() {
       let options = {
@@ -280,6 +277,7 @@ const COMPLEX_UI = {
       );
       thisMagicHappend(content3, hireText, 1, {}, {}, 1200, true);
     }
+    initScrolling();
 
     // Magic Happend here
     function thisMagicHappend(
