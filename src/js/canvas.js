@@ -75,7 +75,7 @@ function Circle(x, y, dx, dy, radius) {
 var circleArray = [];
 function initParticle() {
   circleArray = [];
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 50; i++) {
     var radius = Math.random() * 5 + 1;
     var x = Math.random() * (innerWidth - radius * 2) + radius;
     var y = Math.random() * (innerHeight - radius * 2) + radius;
