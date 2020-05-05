@@ -430,6 +430,10 @@ body {
   animation: moveInBottom 0.5s ease-out 2.2s;
   animation-fill-mode: backwards;
 }
+.btn-animated-in-5 {
+  animation: moveInBottom 0.5s ease-out 2.6s;
+  animation-fill-mode: backwards;
+}
 @keyframes moveInBottom {
   0% {
     opacity: 0;
