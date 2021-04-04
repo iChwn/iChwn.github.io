@@ -27,6 +27,14 @@ body {
 .logo-box img {
   height: 50px;
 }
+.right-resume {
+  position: absolute;
+  top: 55px;
+  right: 50px;
+  animation-name: moveInTop;
+  animation-duration: 1s;
+  z-index: 1;
+}
 
 .preloading-full-width-bg {
   width: 100%;
