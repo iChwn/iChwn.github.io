@@ -30,7 +30,7 @@ body {
 .right-resume {
   position: absolute;
   top: 55px;
-  right: 50px;
+  right: 0px;
   animation-name: moveInTop;
   animation-duration: 1s;
   z-index: 1;
